@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PracticalTest01Var06</string>
+    <string name="less_details">Less details</string>
+    <string name="more_details">More details</string>
+    <string name="pass_butt">Pass</string>
+    <string name="fail_butt">Fail</string>
+    <string name="navig_name">Navigate to secondary activity</string>
+</resources>

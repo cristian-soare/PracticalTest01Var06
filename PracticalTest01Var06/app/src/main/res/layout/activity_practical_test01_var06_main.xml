@@ -57,5 +57,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tohide"
         android:layout_centerHorizontal="true"
-        android:text="@string/navig_name"/>
+        android:text="@string/navig_name"
+        android:id="@+id/navig_butt"/>
 </RelativeLayout>

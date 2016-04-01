@@ -1,5 +1,7 @@
 package ro.pub.cs.systems.eim.practicaltest01var06;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.opengl.Visibility;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,12 +12,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class PracticalTest01Var06MainActivity extends AppCompatActivity {
 
-    private Button lessButton, passButton;
+    private Button lessButton, passButton, navigButton;
     private EditText firstEdit, addrEdit;
     private LinearLayout tohide;
+    private PracticalTest01Var06MainActivity cont;
 
     private LessButtonListener lessButtonListener = new LessButtonListener();
     private class LessButtonListener implements View.OnClickListener {
@@ -58,6 +62,19 @@ public class PracticalTest01Var06MainActivity extends AppCompatActivity {
         }
     }
 
+    private PassButtonListener passButtonListener = new PassButtonListener();
+    private class PassButtonListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(cont, PracticalTest01Var06SecondaryActivity.class);
+            intent.putExtra("addr", addrEdit.getText().toString());
+            intent.putExtra("pass", passButton.getText().toString());
+            startActivity(intent);
+        }
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,8 +88,11 @@ public class PracticalTest01Var06MainActivity extends AppCompatActivity {
 
         firstEdit = (EditText)findViewById(R.id.firstEdit);
         tohide = (LinearLayout)findViewById(R.id.tohide);
+        cont = this;
 
         passButton = (Button)findViewById(R.id.passButton);
+        navigButton = (Button)findViewById(R.id.navig_butt);
+        navigButton.setOnClickListener(passButtonListener);
     }
 
     @Override
@@ -84,6 +104,19 @@ public class PracticalTest01Var06MainActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(Bundle bundle) {
         firstEdit.setText(bundle.getString("firstEdit", ""));
-        addrEdit.setText(bundle.getString("addrEdit",  ""));
+        addrEdit.setText(bundle.getString("addrEdit", ""));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        switch (resultCode) {
+            case Activity.RESULT_OK:
+                Toast.makeText(getApplication(), "OK !Secondary Activity returned with result " + resultCode, Toast.LENGTH_LONG).show();
+                break;
+
+            case Activity.RESULT_CANCELED:
+                Toast.makeText(getApplication(), "NOT OK Secondary Activity returned with result " + resultCode, Toast.LENGTH_LONG).show();
+                break;
+        }
     }
 }

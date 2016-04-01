@@ -5,4 +5,7 @@
     <string name="pass_butt">Pass</string>
     <string name="fail_butt">Fail</string>
     <string name="navig_name">Navigate to secondary activity</string>
+
+    <string name="ok_butt">OK</string>
+    <string name="cancel_butt">Cancel</string>
 </resources>

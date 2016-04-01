@@ -70,7 +70,7 @@ public class PracticalTest01Var06MainActivity extends AppCompatActivity {
             Intent intent = new Intent(cont, PracticalTest01Var06SecondaryActivity.class);
             intent.putExtra("addr", addrEdit.getText().toString());
             intent.putExtra("pass", passButton.getText().toString());
-            startActivity(intent);
+            startActivityForResult(intent, 42);
         }
 
     }
@@ -109,13 +109,9 @@ public class PracticalTest01Var06MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        switch (resultCode) {
-            case Activity.RESULT_OK:
+        switch (requestCode) {
+            case 42:
                 Toast.makeText(getApplication(), "OK !Secondary Activity returned with result " + resultCode, Toast.LENGTH_LONG).show();
-                break;
-
-            case Activity.RESULT_CANCELED:
-                Toast.makeText(getApplication(), "NOT OK Secondary Activity returned with result " + resultCode, Toast.LENGTH_LONG).show();
                 break;
         }
     }
